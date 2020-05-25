@@ -36,45 +36,45 @@
 
 <body id="page-top">
 
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Take A Hike</a>
-            </div>
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style= "background-color: rgba(0, 0, 0, 0.6) !important">
+      <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand-logo page-scroll" href="#page-top">
+                <img src="../static/img/logo.png" height=55 width=70 alt="Logo"/>
+              </a>
+          </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#repo">GitHub</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a style="color:white" class="page-scroll" href="#about">About</a>
+                  </li>
+                  <li>
+                      <a style="color:white" class="page-scroll" href="#directions">Directions</a>
+                  </li>
+                  <!-- <li>
+                      <a style="color:white" class="page-scroll" href="#contact">Contact</a>
+                  </li> -->
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
 
     <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Have you hiked in Colorado before?</h2>
+                  <br>
+                  <br>
+                    <h2 class="section-heading">Do you have any favorite hikes?</h2>
                     <hr class="primary">
-                    <p style="color:black;font-size:18px" class="text-faded">If you have an AllTrails username, <a href="/username">enter it here</a> for better recommendations.</p>
                   </li>
                     <br>
                     <br>
@@ -85,15 +85,10 @@
                 <div class="row">
                   <ul class="list-inline text-left">
                       <br>
-                      <p style="color:black;font-size:20px" class="text-faded">If YES : Pick a hike that you liked.</p>
-                      <form action="/make-recommendations" method="POST">
-                        <!-- <select name='hike-name' size="5">
-                            <option value="">- Select a hike -</option>
-                            {% for hike in hikes %}
-                            <option value="{{hike}}">{{hike}}</option>
-                            {% endfor %}
-                        </select> -->
-                        <input style="height:30px;font-size:14px" list='hike-name' name='hike-name' placeholder="Hike Name">
+                      <p style="color:black;font-size:20px" class="text-faded">If you would like to go on a hike similar to one of your favorite hikes, pick one of your favorite hikes below:</p>
+                      <form action="/make-similar-recommendations" method="POST">
+                        <label for="hike-name"> Hike Name</label>
+                        <input style="height:30px;font-size:14px;cursor:pointer" list='hike-name' name='hike-name' >
                             <datalist id='hike-name'>
                               {% for hike in hikes %}
                               <option value="{{hike}}">{{hike}}</option>
@@ -101,18 +96,31 @@
                             </datalist>
                             <br>
                             <br>
-                        <p style="color:black;font-size:20px" class="text-faded">If NO : Fill in the info below.</p>
-                        <input style="height:30px;font-size:14px" list='num-miles' name='num-miles' placeholder="Hike Distance">
-                            <datalist id='num-miles'>
-                                  <option value="Less than 2 miles"</option>
-                                  <option value="2 - 5 miles"</option>
-                                  <option value="5 - 10 miles"</option>
-                                  <option value="More than 10 miles"</option>
-                            </datalist>
-                                <br>
-                                <br>
+                            <li>
+                              <button type="submit" class="btn btn-primary btn-xl page-scroll" value="submit">Submit</button>
+                            </li>
+                          </form>
+
+                <div class = "col-lg-12 text-center">
+                  <h2 class="section-heading">No favorite hikes?</h2>
+                  <hr class="primary">
+                </div>
+
+                <p style="color:black;font-size:20px" class="text-faded">Fill in the information below:</p>
+                <form action="/make-recommendations" method="POST">
+                <label for="num-miles">Hike Distance </label>
+                <input style="height:30px;font-size:14px;cursor:pointer" list='num-miles' name='num-miles' >
+                    <datalist id='num-miles'>
+                          <option value="Less than 2 miles"</option>
+                          <option value="2 - 5 miles"</option>
+                          <option value="5 - 10 miles"</option>
+                          <option value="More than 10 miles"</option>
+                    </datalist>
+                        <br>
+                        <br>
                     <!-- <ul class="list-inline text-left"> -->
-                        <input style="height:30px;font-size:14px" list='elevation-gain' name='elevation-gain' placeholder="Elevation Gain">
+                    <label for = "elevation-gain">Elevation Gain </label>
+                        <input style="height:30px;font-size:14px;cursor:pointer" list='elevation-gain' name='elevation-gain'>
                             <datalist id='elevation-gain'>
                                 <option value="Less than 500 ft"</option>
                                 <option value="500 - 1000 ft"</option>
@@ -121,7 +129,8 @@
                             </datalist>
                             <br>
                             <br>
-                        <input style="height:30px;font-size:14px" list='dog' name='dog' placeholder="Bringing your dog?">
+                            <label for= "dog">Bringing your dog? </label>
+                        <input style="height:30px;font-size:14px;cursor:pointer" list='dog' name='dog' >
                             <datalist id='dog'>
                                 <option value="Yes"</option>
                                 <option value="No"</option>
@@ -133,11 +142,27 @@
                              <li>
                                <button type="submit" class="btn btn-primary btn-xl page-scroll" value="submit">Submit</button>
                              </li>
+                           </form>
                              <!-- <p style="color:black" class="text-faded">Just want the most popular hikes?</p> -->
-                             <li>
-                               <ul class="list-inline text-right">
-                               <a href="/popular-hikes" style="color:white" class="btn btn-primary btn-xl page-scroll">Just Give Me Popular Hikes</a>
-                             </li>
+                             <br>
+                             <br>
+                             <div class = "col-lg-12 text-center">
+                               <h2 class="section-heading">Just want popular hikes?</h2>
+                               <hr class="primary">
+                             </div>
+                           <form action="/popular-hikes" method="POST">
+                           <label for="state-name">Pick a state</label>
+                           <input style="height:30px;font-size:14px;cursor:pointer" list='state-name' name='state-name' >
+                               <datalist id='state-name'>
+                                 {% for state in states %}
+                                 <option value="{{state}}">{{state}}</option>
+                                 {% endfor %}
+                               </datalist>
+                               <br>
+                               <br>
+                           <li>
+                             <button type="submit" class="btn btn-primary btn-xl page-scroll" value="submit">Give Me Popular Hikes</button>
+                           </li>
                     </form>
                 </div>
             </div>

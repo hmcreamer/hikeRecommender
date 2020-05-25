@@ -151,8 +151,9 @@ def index():
 
 @app.route('/choose-hike', methods=['GET', 'POST'])
 def enter_hike():
-	hikes = list_hikes(sf_hikes)
-	return render_template('choose-hike.html', hikes=hikes)
+	# hikes = list_hikes(sf_hikes)
+	hikes = ["Test Hike"]
+	return render_template('choose-hike.html', hikes=hikes, states = states)
 
 @app.route('/username', methods=['GET', 'POST'])
 def enter_username():
@@ -190,7 +191,8 @@ def get_popular():
 	best_hikes = random_five(recs)
 	return render_template('get-popular.html', best_hikes=best_hikes)
 
-
+#This should go in if statement belwo
+states = ["Texas"]
 #if __name__ == '__main__':
 	#sf_hikes = gl.SFrame('../data/all_hikes_with_hike_name.csv')
 	#sf_hikes = sf_hikes.remove_column('hike_id')
